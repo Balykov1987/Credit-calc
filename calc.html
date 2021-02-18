@@ -1,34 +1,42 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Кредитный калькулятор</title>
-</head>
-<body>
-	
-	<input oninput="out.value=(range_calc.value)" id="summ" onchange="umcalc4()" max="3000000" min="30000" name="in11111" step="10000" type="range" value="0">
 
-	<output id="out">30000</output>
+<output id="out1">0</output>
+<input oninput="out1.value=(num1.value)" id="num1" type="range" min="30000" max="3000000" step="10000" onchange="func()" />
 
-<script>
-	var summ = 340000;
-	var period = 36;
-	var rate = 0.24;
+<output id="out">0</output>
+ <input oninput="out.value=(num2.value)" id="num2" type="range" min="2" max="60" step="1" onchange="func()" value="0" />
+ 
 
-	// Аннуитентный кредит 
-	// Расчет по формуле Изначальная сумма * ежемесячная процентная ставка / (1 - (1 / (1 + ежемесячная процентная ставкац) ^ период кредита)) 
+ <p id="result"></p>
 
-	var ann = 0;
-	var monthRate = rate / 12;
-	var topRate = +(sum * monthRate).toFixed(2);
-	var bottomRate = +(1 - (1 / Math.pow (monthRate + 1, period))).toFixed(2);
-	ann = +(topRate / bottomRate).toFixed(0);
-	console.log(ann);
+ <script>
+    function func(){
+          var summ      = Number(document.getElementById("num1").value);
+          var period    = Number(document.getElementById("num2").value);
+          var rate      = 0.24;
+          var monthRate = rate / 12;
+          var topRate   = +(summ * monthRate).toFixed(2);
+          var bottomRate = +(1 - (1 / Math.pow (monthRate + 1, period))).toFixed(2);
+          var result = +(topRate / bottomRate).toFixed(2);
+          var total = Math.round(result);
+
+          console.log(topRate, bottomRate);
+          document.getElementById("result").innerHTML = total;
+        }
+ </script>
+
+ <script>
+	//var summ = 340000;
+	//var period = 36;
+	//var rate = 0.24;
+
+// Аннуитентный кредит 
+// Расчет по формуле Изначальная сумма * ежемесячная процентная ставка / (1 - (1 / (1 + //ежемесячная процентная ставкац) ^ период кредита)) 
+	//var ann = 0;
+	//var monthRate = rate / 12;
+	//var topRate = +(sum * monthRate).toFixed(2);
+	//var bottomRate = +(1 - (1 / Math.pow (monthRate + 1, period))).toFixed(2);
+	//ann = +(topRate / bottomRate).toFixed(0);
+	//console.log(ann);
 
 
 </script>
-
-
-</body>
-</html>
